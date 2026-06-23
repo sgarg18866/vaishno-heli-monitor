@@ -52,6 +52,10 @@ jobs:
 
           git commit -m "update state"
 
-          git pull --rebase origin main
+          for i in 1 2 3; do
+            git pull --rebase origin main && \
+            git push origin HEAD:main && break
 
-          git push origin HEAD:main
+            echo "Push failed, retrying..."
+            sleep 5
+          done
