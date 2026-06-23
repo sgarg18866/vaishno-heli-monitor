@@ -8,8 +8,13 @@ CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 URL = "https://online.maavaishnodevi.org/api/v1/eHelicopter/HelicopterAvailability"
 
 DATES = [
-    "2026-07-22",
-    "2026-08-27"
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29"
 ]
 
 PAYLOAD_TEMPLATE = {
