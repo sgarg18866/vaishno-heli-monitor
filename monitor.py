@@ -68,13 +68,13 @@ def get_availability(date, vendor_id):
     payload = BASE_PAYLOAD.copy()
     payload["date"] = date
     payload["vendorId"] = vendor_id
-
+    
     response = requests.post(
         API_URL,
         json=payload,
+        headers=HEADERS,
         timeout=30
-    )
-
+     )
     response.raise_for_status()
 
     return response.json()
