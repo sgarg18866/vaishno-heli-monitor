@@ -5,6 +5,11 @@ import requests
 BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
+HEADERS = {
+    "Origin": "https://online.maavaishnodevi.org",
+    "Referer": "https://online.maavaishnodevi.org/"
+}
+
 API_URL = "https://online.maavaishnodevi.org/api/v1/eHelicopter/HelicopterAvailability"
 
 # Change these dates as required
