@@ -6,8 +6,16 @@ BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 HEADERS = {
-    "Origin": "https://online.maavaishnodevi.org",
-    "Referer": "https://online.maavaishnodevi.org/"
+    "accept": "application/json, text/plain, */*",
+    "content-type": "application/json",
+    "origin": "https://online.maavaishnodevi.org",
+    "referer": "https://online.maavaishnodevi.org/",
+    "user-agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/148.0.0.0 Safari/537.36"
+    ),
+    "tof-auth-token": os.environ["TOF_AUTH_TOKEN"]
 }
 
 API_URL = "https://online.maavaishnodevi.org/api/v1/eHelicopter/HelicopterAvailability"
@@ -68,7 +76,7 @@ def save_state(state):
 def get_availability(date, vendor_id):
     payload = BASE_PAYLOAD.copy()
     payload["date"] = date
-    payload["vendorId"] = vendor_id
+    payload["vendorId"] = str(vendor_id)
 
     response = requests.post(
         API_URL,
