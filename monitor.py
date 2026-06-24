@@ -39,9 +39,8 @@ BASE_PAYLOAD = {
     "noOfPilgrims": "1"
 }
 
-
 def send_telegram(message):
-    requests.post(
+    resp = requests.post(
         f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
         json={
             "chat_id": CHAT_ID,
@@ -50,6 +49,8 @@ def send_telegram(message):
         timeout=30
     )
 
+    print("Telegram status:", resp.status_code)
+    print("Telegram response:", resp.text)
 
 def load_state():
     try:
@@ -105,9 +106,14 @@ for date in DATES:
                 current_state[unique_key] = seats
 
                 previous_seats = previous_state.get(unique_key, 0)
+                print(
+                    f"{date} {vendor_name} {slot_time} "
+                    f"Seats={seats} Previous={previous_seats}"
+                )
 
                 # Alert only if availability increased
-                if seats >= MIN_SEATS_REQUIRED and seats > previous_seats:
+                #if seats >= MIN_SEATS_REQUIRED and seats > previous_seats:
+                if seats >= MIN_SEATS_REQUIRED:
 
                     alerts.append(
                         f"🚁 Vaishno Devi Helicopter Available\n\n"
