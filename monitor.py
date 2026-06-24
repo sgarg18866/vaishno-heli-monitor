@@ -147,8 +147,15 @@ for date in DATES:
 
 save_state(current_state)
 
+#for alert in alerts:
+#    send_telegram(alert)
+
+message = "🚁 Helicopter Tickets Found\n\n"
+
 for alert in alerts:
-    send_telegram(alert)
+    message += alert + "\n\n"
+
+send_telegram(message[:4000])
 
 print(f"Checked {len(DATES)} dates")
 print(f"Sent {len(alerts)} alerts")
