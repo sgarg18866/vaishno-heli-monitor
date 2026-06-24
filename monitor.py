@@ -86,10 +86,15 @@ def get_availability(date, vendor_id):
     )
 
     print("Status:", response.status_code)
-    print("Content-Type:", response.headers.get("content-type"))
-    print("Body:", response.text[:500])
+    print("Headers:", dict(response.headers))
+    print("Body length:", len(response.text))
+    print("Body repr:", repr(response.text[:500]))
 
     response.raise_for_status()
+
+    #return response.json()
+    if not response.text.strip():
+        raise Exception("Empty response body")
 
     return response.json()
 
